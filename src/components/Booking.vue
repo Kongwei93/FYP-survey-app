@@ -49,63 +49,65 @@
   </div>
 </template>
 
+//
 <script>
-import { mapState } from "vuex";
+// import { mapState } from "vuex";
 
-const isToday = (someDate, today = new Date()) =>
-  someDate.getDate() == today.getDate() &&
-  someDate.getMonth() == today.getMonth() &&
-  someDate.getFullYear() == today.getFullYear();
+// const isToday = (someDate, today = new Date()) =>
+//   someDate.getDate() == today.getDate() &&
+//   someDate.getMonth() == today.getMonth() &&
+//   someDate.getFullYear() == today.getFullYear();
 
-export default {
-  name: "Booking",
+// export default {
+//   name: "Booking",
 
-  props: ["src"],
+//   props: ["src"],
 
-  created() {
-    // Only run this on first load, so that if user navigates back from timeslots dates will not be loaded again
-    if (this.datesAvailable.length === 0) this.loadDates();
+//   created() {
+//     // Only run this on first load, so that if user navigates back from timeslots dates will not be loaded again
+//     if (this.datesAvailable.length === 0) this.loadDates();
 
-    // Get the referral source if any, else UN for undefined/unknown
-    // Only set it if the src is undefined
-    // So to prevent cases where user navigates to timeslot and back, the src query param might be removed
-    // So if it was set again it might be removed or defaulted to UN
-    if (!this.$store.state.src)
-      this.$store.commit("setter", ["src", this.src || "UN"]);
-  },
+//     // Get the referral source if any, else UN for undefined/unknown
+//     // Only set it if the src is undefined
+//     // So to prevent cases where user navigates to timeslot and back, the src query param might be removed
+//     // So if it was set again it might be removed or defaulted to UN
+//     if (!this.$store.state.src)
+//       this.$store.commit("setter", ["src", this.src || "UN"]);
+//   },
 
-  computed: mapState(["datesAvailable"]),
+//   computed: mapState(["datesAvailable"]),
 
-  methods: {
-    async loadDates(after) {
-      this.$store.commit("loading", true);
-      await this.$store.dispatch("loadDates", after);
-      this.$store.commit("loading", false);
-    },
+//   methods: {
+//     async loadDates(after) {
+//       this.$store.commit("loading", true);
+//       await this.$store.dispatch("loadDates", after);
+//       this.$store.commit("loading", false);
+//     },
 
-    async getMoreDates() {
-      this.loadDates(
-        // Get the last date in available dates to get more timeslots after that date
-        // SADLY SAFARI does not support .at() ... smh
-        // state.datesAvailable.at(-1)?.date,
-        this.$store.state.datesAvailable[
-          this.$store.state.datesAvailable.length - 1
-        ]?.date
-      );
-    },
+//     async getMoreDates() {
+//       this.loadDates(
+//         // Get the last date in available dates to get more timeslots after that date
+//         // SADLY SAFARI does not support .at() ... smh
+//         // state.datesAvailable.at(-1)?.date,
+//         this.$store.state.datesAvailable[
+//           this.$store.state.datesAvailable.length - 1
+//         ]?.date
+//       );
+//     },
 
-    toWeekday(i, date) {
-      // If this is the first available date, check if it is today
-      // Only check if it is the first available date to prevent doing extra work checking the other further dates
-      return i === 0 && isToday(date)
-        ? "Today"
-        : date.toLocaleString("default", { weekday: "long" });
-    },
+//     toWeekday(i, date) {
+//       // If this is the first available date, check if it is today
+//       // Only check if it is the first available date to prevent doing extra work checking the other further dates
+//       return i === 0 && isToday(date)
+//         ? "Today"
+//         : date.toLocaleString("default", { weekday: "long" });
+//     },
 
-    selectDate(date) {
-      this.$store.commit("setter", ["selectedDate", date]);
-      this.$router.push({ name: "select-timeslot" });
-    },
-  },
-};
+//     selectDate(date) {
+//       this.$store.commit("setter", ["selectedDate", date]);
+//       this.$router.push({ name: "select-timeslot" });
+//     },
+//   },
+// };
+//
 </script>
