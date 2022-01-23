@@ -19,7 +19,7 @@
                   required
                 />
                 <span class="icon is-small is-left">
-                  <i class="fa fa-envelope"></i>
+                  <i class="fas fa-envelope"></i>
                 </span>
               </div>
             </div>
@@ -33,7 +33,7 @@
                   required
                 />
                 <span class="icon is-small is-left">
-                  <i class="fa fa-lock"></i>
+                  <i class="fas fa-lock"></i>
                 </span>
               </div>
             </div>
@@ -49,7 +49,9 @@
             <div class="field">
               <h6 class="subtitle is-6">
                 Not registered yet?
-                <a href="register">Register Here</a>
+                <router-link :to="{ name: 'register' }">
+                  Register Here
+                </router-link>
               </h6>
             </div>
           </form>
