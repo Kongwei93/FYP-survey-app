@@ -15,22 +15,22 @@ html {
   /* background: linear-gradient(#e66465, #9198e5); */
 
   /* fallback for old browsers */
-  background: #bdc3c7;
+  /* background: #bdc3c7; */
 
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, #2c3e50, #a6a8a8);
+  /* background: -webkit-linear-gradient(to right, #2c3e50, #a6a8a8); */
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, #2c3e50, #a6a8a8);
+  /* background: linear-gradient(to right, #2c3e50, #a6a8a8); */
 
   /* Background image below now overrides the above gradient */
 
   /* Background image and ensure it's position is fixed */
-  background: url("https://images.unsplash.com/photo-1542826522-beb53da5f648?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80");
+  /* background: url("https://images.unsplash.com/photo-1542826522-beb53da5f648?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: fixed; */
 }
 
 #app {

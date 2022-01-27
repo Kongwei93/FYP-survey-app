@@ -1,9 +1,17 @@
 <template>
-  <article class="message is-large">
-    <div class="message-header">
-      <p>Wellness Survey App</p>
+  <nav class="navbar is-transparent">
+    <div class="navbar-brand">
+      <a class="navbar-item">
+        <img src="/nus.png" alt="NUS survey app" href="#" />
+      </a>
+      <p class="py-3" href="#"><strong>NUS Wellness Survey App</strong></p>
+      <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
-  </article>
+  </nav>
   <div class="hero-body">
     <div class="container">
       <div class="columns is-centered">

@@ -31,9 +31,9 @@ const router = createRouter({
       component: () => import("./views/Register.vue"),
     },
     {
-      path: "/details",
-      name: "details",
-      component: () => import("./components/Details.vue"),
+      path: "/surveyselection",
+      name: "surveyselection",
+      component: () => import("./views/SurveySelection.vue"),
     },
     {
       path: "/complete",
