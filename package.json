@@ -10,6 +10,7 @@
     "@mdi/font": "^6.5.95",
     "bulma": "^0.9.3",
     "calendar-link": "^2.1.1",
+    "firebase": "^9.6.7",
     "mop-appointment-src": "github:Enkel-Digital/mop-appointment-src",
     "simpler-fetch": "^6.0.0",
     "vue": "^3.2.16",

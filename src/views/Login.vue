@@ -4,7 +4,7 @@
       <a class="navbar-item">
         <img src="/nus.png" alt="NUS survey app" href="#" />
       </a>
-      <p class="py-3" href="#"><strong>NUS Wellness Survey App</strong></p>
+      <p class="py-3" href="#"><strong>NUS Wellness Survey</strong></p>
       <div class="navbar-burger" data-target="navbarExampleTransparentExample">
         <span></span>
         <span></span>
@@ -52,7 +52,7 @@
               </label>
             </div>
             <div class="field">
-              <button class="button is-success">Login</button>
+              <button class="button is-link">Login</button>
             </div>
             <div class="field">
               <h6 class="subtitle is-6">

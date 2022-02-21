@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import store from "./store.js";
-import Login from "./views/Login.vue";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -20,8 +19,8 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "login",
-      component: Login,
+      name: "surveyselection",
+      component: () => import("./views/SurveySelection.vue"),
       // Pass URL query parameters as prop to component
       props: (route) => route.query,
     },
@@ -31,46 +30,9 @@ const router = createRouter({
       component: () => import("./views/Register.vue"),
     },
     {
-      path: "/surveyselection",
-      name: "surveyselection",
-      component: () => import("./views/SurveySelection.vue"),
-    },
-    {
-      path: "/complete",
-      name: "complete",
-      component: () => import("./components/Complete.vue"),
-    },
-    {
-      path: "/reschedule/:appointmentID/:originalTimeslot",
-      redirect: (to) => {
-        /*
-          If it is a reschedule, set all the values into vuex,
-          and redirect to Booking view to select new date & timeslot.
-        */
-
-        store.commit("setter", ["reschedule", true]);
-        store.commit("setter", ["appointmentID", to.params.appointmentID]);
-
-        // All URL params are string because the URL is a string,
-        // Thus calling parseInt on originalTimeslot to make it a Number first
-        store.commit("setter", [
-          "originalTimeslot",
-          parseInt(to.params.originalTimeslot),
-        ]);
-
-        return { name: "booking" };
-      },
-    },
-    {
-      path: "/reschedule/confirm",
-      name: "reschedule",
-      component: () => import("./components/Reschedule.vue"),
-    },
-    {
-      path: "/cancel/:appointmentID",
-      props: true,
-      name: "cancel",
-      component: () => import("./components/Cancel.vue"),
+      path: "/login",
+      name: "login",
+      component: () => import("./views/Login.vue"),
     },
 
     // @todo Add a 404 not found
