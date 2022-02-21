@@ -16,7 +16,7 @@
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-          <form action="" class="box">
+          <form class="register" @submit.prevent="register">
             <div class="field">
               <label for="" class="label">Name</label>
 
@@ -45,6 +45,7 @@
                 placeholder="e.g. bobsmith@gmail.com"
                 class="input"
                 required
+                v-model="register_form.email"
               />
             </div>
             <div class="field">
@@ -55,9 +56,10 @@
                 placeholder="*******"
                 class="input"
                 required
+                v-model="register_form.password"
               />
             </div>
-            <div class="field">
+            <!-- <div class="field">
               <label for="" class="label">Confirm Password</label>
 
               <input
@@ -66,7 +68,7 @@
                 class="input"
                 required
               />
-            </div>
+            </div> -->
             <div class="field">
               <div class="control">
                 <label class="checkbox">
@@ -77,7 +79,7 @@
             </div>
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-link">Submit</button>
+                <input type="submit" value="Register" class="button is-link" />
               </div>
               <div class="control">
                 <button class="button is-link is-light">Cancel</button>
@@ -89,3 +91,21 @@
     </div>
   </div>
 </template>
+
+<script>
+import { ref } from "vue";
+import { useStore } from "vuex";
+
+export default {
+  setup() {
+    const register_form = ref({});
+    const store = useStore();
+
+    const register = () => {
+      store.dispatch("register", register_form.value);
+    };
+
+    return { register_form, register };
+  },
+};
+</script>

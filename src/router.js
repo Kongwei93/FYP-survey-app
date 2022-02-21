@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import store from "./store.js";
+import { auth } from "./firebase";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -23,6 +24,9 @@ const router = createRouter({
       component: () => import("./views/SurveySelection.vue"),
       // Pass URL query parameters as prop to component
       props: (route) => route.query,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: "/register",
@@ -37,6 +41,23 @@ const router = createRouter({
 
     // @todo Add a 404 not found
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.path === "/login" && auth.currentUser) {
+    next("/");
+    return;
+  }
+
+  if (
+    to.matched.some((record) => record.meta.requiresAuth) &&
+    !auth.currentUser
+  ) {
+    next("/login");
+    return;
+  }
+
+  next();
 });
 
 export default router;

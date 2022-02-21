@@ -1,4 +1,11 @@
 import { createStore } from "vuex";
+import router from "./router";
+import { auth } from "./firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 
 const getRecaptchaToken = async (action) =>
   new Promise((resolve, reject) =>
@@ -25,15 +32,81 @@ export default createStore({
   },
   actions: {
     async login({ commit }, details) {
-      //todo
+      const { email, password } = details;
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+      } catch (error) {
+        switch (error.code) {
+          case "auth/user-not-found":
+            alert("User not found");
+            break;
+          case "auth/wrong-password":
+            alert("Password is incorrect");
+            break;
+          default:
+            alert("something went wrong");
+        }
+
+        return;
+      }
+
+      commit("SET_USER", auth.currentUser);
+
+      router.push("/");
     },
 
     async register({ commit }, details) {
-      //todo
+      const { email, password } = details;
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+      } catch (error) {
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            alert("Email already in use");
+            break;
+          case "auth/invalid-email":
+            alert("Invalid email");
+            break;
+          case "auth/operation-not-allowed":
+            alert("Operation not allowed");
+            break;
+          case "auth/weak-password":
+            alert("Weak password");
+            break;
+          default:
+            alert("something went wrong");
+        }
+
+        return;
+      }
+
+      commit("SET_USER", auth.currentUser);
+
+      router.push("/");
     },
 
     async logout({ commit }) {
-      //todo
+      await signOut(auth);
+
+      commit("CLEAR_USER");
+
+      router.push("/login");
+    },
+
+    fetchUser({ commit }) {
+      auth.onAuthStateChanged(async (user) => {
+        if (user === null) {
+          commit("CLEAR_USER");
+        } else {
+          commit("SET_USER", user);
+
+          if (router.isReady() && router.currentRoute.value.path === "/login") {
+            router.push("/");
+          }
+        }
+      });
     },
   },
 });
