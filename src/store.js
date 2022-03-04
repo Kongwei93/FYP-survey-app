@@ -104,6 +104,11 @@ export default createStore({
 
           if (router.isReady() && router.currentRoute.value.path === "/login") {
             router.push("/");
+          } else if (
+            router.isReady() &&
+            router.currentRoute.value.path === "/register"
+          ) {
+            router.push("/");
           }
         }
       });
