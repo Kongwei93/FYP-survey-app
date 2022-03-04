@@ -1,17 +1,4 @@
 <template>
-  <nav class="navbar is-transparent">
-    <div class="navbar-brand">
-      <a class="navbar-item">
-        <img src="/nus.png" alt="NUS survey app" href="#" />
-      </a>
-      <p class="py-3" href="#"><strong>NUS Wellness Survey</strong></p>
-      <div class="navbar-burger" data-target="navbarExampleTransparentExample">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </nav>
   <div class="hero-body">
     <div class="container">
       <div class="columns is-centered">

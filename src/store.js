@@ -104,7 +104,18 @@ export default createStore({
 
           if (router.isReady() && router.currentRoute.value.path === "/login") {
             router.push("/");
-          } else if (
+          }
+        }
+      });
+    },
+    fetchUser({ commit }) {
+      auth.onAuthStateChanged(async (user) => {
+        if (user === null) {
+          commit("CLEAR_USER");
+        } else {
+          commit("SET_USER", user);
+
+          if (
             router.isReady() &&
             router.currentRoute.value.path === "/register"
           ) {
