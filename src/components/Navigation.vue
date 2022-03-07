@@ -30,10 +30,8 @@
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link"> Menu </a>
             <div class="navbar-dropdown is-boxed">
-              <a class="navbar-item" href=""> Home </a>
-              <a class="navbar-item" href="#/surveyselection">
-                Survey Selection
-              </a>
+              <a class="navbar-item" href="#"> Home </a>
+              <a class="navbar-item" href="#"> Survey Selection </a>
 
               <hr class="navbar-divider" />
               <a class="navbar-item" @click="$store.dispatch('logout')">

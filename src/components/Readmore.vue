@@ -12,19 +12,14 @@ export default {
   name: "Readmore",
   data() {
     return {
-      longText: `Brown skin girl
-Your skin just like pearls
-The best thing in the world
-Never trade you for anybody else
-Singin' brown skin girl
-Your skin just like pearls
-The best thing in the world
-I never trade you for anybody else, singin'
-She said she really grew up poor like me
-yeah
-So while I may not pretty boy, your heart is amiss
-Play it like a villain 'cause she caught in a wave
-Tonight I am walkin' away`,
+      longText: `The Perceived Stress Scale (PSS) is the most widely used psychological instrument for measuring the perception of
+stress. It is a measure of the degree to which situations in one’s life are appraised as stressful. Items were designed to
+tap how unpredictable, uncontrollable, and overloaded respondents find their lives. The scale also includes a number of
+direct queries about current levels of experienced stress. The PSS was designed for use in community samples with at
+least a junior high school education. The items are easy to understand, and the response alternatives are simple to grasp.
+Moreover, the questions are of a general nature and hence are relatively free of content specific to any subpopulation
+group. The questions in the PSS ask about feelings and thoughts during the last month. In each case, respondents are
+asked how often they felt a certain way.`,
       readMoreActivated: false,
     };
   },
