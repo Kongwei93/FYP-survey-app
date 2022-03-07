@@ -5,7 +5,9 @@
         <a class="navbar-item" href="#">
           <img src="/nus.png" alt="NUS survey app" />
         </a>
-        <a class="navbar-item py-3"><strong>NUS Wellness Survey</strong></a>
+        <a class="navbar-item py-3"
+          ><strong>NUS Mental Health Assesment</strong></a
+        >
         <a
           v-if="$store.state.user"
           role="button"

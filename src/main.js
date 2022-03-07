@@ -8,10 +8,12 @@ import store from "./store.js";
 import App from "./App.vue";
 import Navigation from "./components/Navigation.vue";
 import Readmore from "./components/Readmore.vue";
+import Surveycard from "./components/Surveycard.vue";
 
 createApp(App)
   .use(router)
   .use(store)
   .component("Navigation", Navigation)
   .component("Readmore", Readmore)
+  .component("Surveycard", Surveycard)
   .mount("#app");
