@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navigation />
+    <Navi />
     <router-view />
   </div>
 </template>
@@ -8,10 +8,10 @@
 <script>
 import { onBeforeMount } from "vue";
 import { useStore } from "vuex";
-import Navigation from "./components/Navigation.vue";
+import Navi from "./components/Navigation.vue";
 
 export default {
-  components: Navigation,
+  components: Navi,
   setup() {
     const store = useStore();
 

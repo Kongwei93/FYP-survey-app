@@ -1,12 +1,12 @@
 <template>
   <div class="column is-4">
-    <a href="/register">
+    <a href="#">
       <div class="card">
         <div class="card-image">
           <figure class="image">
             <img
               loading="lazy"
-              src="https://api.time.com/wp-content/uploads/2018/11/stress-benefits.jpg?w,800,quality,85"
+              src="/stress-benefits.jpg"
               alt="Perceived Stress Scale"
             />
           </figure>

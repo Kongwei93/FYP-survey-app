@@ -1,13 +1,13 @@
 <template>
-  <div class="navigation">
+  <div class="navi">
     <nav class="navbar">
       <div class="navbar-brand">
-        <a class="navbar-item" href="#">
+        <p class="navbar-item">
           <img src="/nus.png" alt="NUS survey app" />
-        </a>
-        <a class="navbar-item py-3"
-          ><strong>NUS Mental Health Assesment</strong></a
-        >
+        </p>
+        <p class="navbar-item py-3">
+          <strong>NUS Mental Health Assesment</strong>
+        </p>
         <a
           v-if="$store.state.user"
           role="button"
@@ -49,7 +49,7 @@
 
 <script>
 export default {
-  name: "Navigation",
+  name: "Navi",
 
   data() {
     return {
