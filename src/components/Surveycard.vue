@@ -23,7 +23,10 @@
 </template>
 
 <script>
+import Readmore from "../components/Readmore.vue";
+
 export default {
   name: "Surveycard",
+  components: { Readmore },
 };
 </script>

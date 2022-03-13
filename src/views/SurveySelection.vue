@@ -4,11 +4,9 @@
 </template>
 
 <script>
-import Readmore from "../components/Readmore.vue";
 import Surveycard from "../components/Surveycard.vue";
 
 export default {
-  components: Readmore,
-  Surveycard,
+  components: { Surveycard },
 };
 </script>

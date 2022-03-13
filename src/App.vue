@@ -11,7 +11,8 @@ import { useStore } from "vuex";
 import Navi from "./components/Navigation.vue";
 
 export default {
-  components: Navi,
+  components: { Navi },
+
   setup() {
     const store = useStore();
 
