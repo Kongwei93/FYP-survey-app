@@ -7,16 +7,6 @@ import {
   signOut,
 } from "firebase/auth";
 
-const getRecaptchaToken = async (action) =>
-  new Promise((resolve, reject) =>
-    grecaptcha.ready(() =>
-      grecaptcha
-        .execute("6Lcex6QcAAAAADus4RtnoqwskQoXcB2DwgCav11Z", { action })
-        .then(resolve)
-        .catch(reject)
-    )
-  );
-
 export default createStore({
   state: {
     user: null,
