@@ -12,7 +12,7 @@
                   placeholder="e.g. bobsmith@gmail.com"
                   class="input"
                   required
-                  v-model="login_form.email"
+                  v-model="email"
                 />
                 <span class="icon is-small is-left">
                   <i class="fas fa-envelope"></i>
@@ -27,18 +27,12 @@
                   placeholder="*******"
                   class="input"
                   required
-                  v-model="login_form.password"
+                  v-model="password"
                 />
                 <span class="icon is-small is-left">
                   <i class="fas fa-lock"></i>
                 </span>
               </div>
-            </div>
-            <div class="field">
-              <label for="" class="checkbox">
-                <input type="checkbox" />
-                Remember me
-              </label>
             </div>
             <div class="field">
               <input type="submit" value="Login" class="button is-link" />
@@ -59,19 +53,23 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import { useStore } from "vuex";
-
 export default {
-  setup() {
-    const login_form = ref({});
-    const store = useStore();
+  name: "Login",
 
-    const login = () => {
-      store.dispatch("login", login_form.value);
+  data() {
+    return {
+      email: undefined,
+      password: undefined,
     };
+  },
 
-    return { login_form, login };
+  methods: {
+    login() {
+      this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password,
+      });
+    },
   },
 };
 </script>

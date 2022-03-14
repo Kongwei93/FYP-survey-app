@@ -38,6 +38,11 @@ const router = createRouter({
       name: "login",
       component: () => import("./views/Login.vue"),
     },
+    {
+      path: "/terms",
+      name: "terms",
+      component: () => import("./views/Terms.vue"),
+    },
 
     // @todo Add a 404 not found
   ],

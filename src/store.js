@@ -1,4 +1,6 @@
 import { createStore } from "vuex";
+import createPersistedState from "vuex-persistedstate";
+
 import router from "./router";
 import { auth } from "./firebase";
 import {
@@ -8,6 +10,8 @@ import {
 } from "firebase/auth";
 
 export default createStore({
+  plugins: [createPersistedState()],
+
   state: {
     user: null,
   },
@@ -21,9 +25,7 @@ export default createStore({
     },
   },
   actions: {
-    async login({ commit }, details) {
-      const { email, password } = details;
-
+    async login({ commit }, { email, password }) {
       try {
         await signInWithEmailAndPassword(auth, email, password);
       } catch (error) {
@@ -46,11 +48,11 @@ export default createStore({
       router.push("/");
     },
 
-    async register({ commit }, details) {
-      const { email, password } = details;
-
+    async register({ commit }, { email, password, name, age }) {
       try {
         await createUserWithEmailAndPassword(auth, email, password);
+        commit("SET_USER", auth.currentUser);
+        router.push("/");
       } catch (error) {
         switch (error.code) {
           case "auth/email-already-in-use":
@@ -71,10 +73,6 @@ export default createStore({
 
         return;
       }
-
-      commit("SET_USER", auth.currentUser);
-
-      router.push("/");
     },
 
     async logout({ commit }) {
@@ -83,20 +81,6 @@ export default createStore({
       commit("CLEAR_USER");
 
       router.push("/login");
-    },
-
-    fetchUser({ commit }) {
-      auth.onAuthStateChanged(async (user) => {
-        if (user === null) {
-          commit("CLEAR_USER");
-        } else {
-          commit("SET_USER", user);
-
-          if (router.isReady() && router.currentRoute.value.path === "/login") {
-            router.push("/");
-          }
-        }
-      });
     },
   },
 });

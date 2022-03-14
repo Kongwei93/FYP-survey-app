@@ -12,6 +12,7 @@
                 placeholder="e.g. Bob Smith"
                 class="input"
                 required
+                v-model="name"
               />
             </div>
             <div class="field">
@@ -22,6 +23,7 @@
                 placeholder="e.g. 21"
                 class="input"
                 required
+                v-model="age"
               />
             </div>
             <div class="field">
@@ -32,7 +34,7 @@
                 placeholder="e.g. bobsmith@gmail.com"
                 class="input"
                 required
-                v-model="register_form.email"
+                v-model="email"
               />
             </div>
             <div class="field">
@@ -43,24 +45,17 @@
                 placeholder="*******"
                 class="input"
                 required
-                v-model="register_form.password"
+                v-model="password"
               />
             </div>
-            <!-- <div class="field">
-              <label for="" class="label">Confirm Password</label>
-
-              <input
-                type="password"
-                placeholder="*******"
-                class="input"
-                required
-              />
-            </div> -->
             <div class="field">
               <div class="control">
                 <label class="checkbox">
-                  <input type="checkbox" />
-                  I agree to the <a href="#">terms and conditions</a>
+                  <input type="checkbox" v-model="agreeToTerms" />
+                  I agree to the
+                  <router-link :to="{ name: 'terms' }">
+                    Terms & Conditions
+                  </router-link>
                 </label>
               </div>
             </div>
@@ -69,7 +64,12 @@
                 <input type="submit" value="Register" class="button is-link" />
               </div>
               <div class="control">
-                <button class="button is-link is-light">Cancel</button>
+                <button
+                  class="button is-link is-light"
+                  @click="$router.push({ name: 'login' })"
+                >
+                  Cancel
+                </button>
               </div>
             </div>
           </form>
@@ -80,19 +80,30 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import { useStore } from "vuex";
-
 export default {
-  setup() {
-    const register_form = ref({});
-    const store = useStore();
+  name: "Register",
 
-    const register = () => {
-      store.dispatch("register", register_form.value);
+  data() {
+    return {
+      name: undefined,
+      age: undefined,
+      email: undefined,
+      password: undefined,
+      agreeToTerms: false,
     };
+  },
 
-    return { register_form, register };
+  methods: {
+    register() {
+      if (this.agreeToTerms === false) return alert("Please agree to terms");
+
+      this.$store.dispatch("register", {
+        name: this.name,
+        age: this.age,
+        email: this.email,
+        password: this.password,
+      });
+    },
   },
 };
 </script>

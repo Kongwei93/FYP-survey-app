@@ -12,10 +12,23 @@
           </figure>
         </div>
         <div class="card-content">
-          <p class="title is-5">Perceived Stress Scale</p>
-          <p class="subtitle is-6">
-            <Readmore />
-          </p>
+          <p class="title is-5">{{ survey.title }}</p>
+          <div class="subtitle is-6">
+            <div>
+              <span v-if="!readMoreActivated"
+                >{{ survey.text.slice(0, 200) }}
+              </span>
+              <a
+                class=""
+                v-if="!readMoreActivated"
+                @click="activateReadMore"
+                href="#"
+              >
+                Read more...
+              </a>
+              <span v-if="readMoreActivated" v-html="survey.text"></span>
+            </div>
+          </div>
         </div>
       </div>
     </a>
@@ -23,10 +36,21 @@
 </template>
 
 <script>
-import Readmore from "../components/Readmore.vue";
-
 export default {
   name: "Surveycard",
-  components: { Readmore },
+
+  props: ["survey"],
+
+  data() {
+    return {
+      readMoreActivated: false,
+    };
+  },
+
+  methods: {
+    activateReadMore() {
+      this.readMoreActivated = true;
+    },
+  },
 };
 </script>

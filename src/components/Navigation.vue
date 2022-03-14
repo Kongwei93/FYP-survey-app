@@ -1,6 +1,6 @@
 <template>
   <div class="navi">
-    <nav class="navbar">
+    <nav class="navbar is-fixed-top">
       <div class="navbar-brand">
         <p class="navbar-item">
           <img src="/nus.png" alt="NUS survey app" />
@@ -8,14 +8,21 @@
         <p class="navbar-item py-3">
           <strong>NUS Mental Health Assesment</strong>
         </p>
+        <button
+          v-if="$router.view === terms"
+          class="button is-right"
+          @click="$router.push({ name: 'register' })"
+        >
+          back
+        </button>
+
         <a
           v-if="$store.state.user"
           role="button"
           class="navbar-burger"
-          :class="{ 'is-active': showMobileMenu }"
           aria-label="menu"
           data-target="navbarMenu"
-          @click="showMobileMenu = !showMobileMenu"
+          @click="showMenu = !showMenu"
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -26,7 +33,7 @@
       <div
         id="navbarMenu"
         class="navbar-menu"
-        :class="{ 'is-active': showMobileMenu }"
+        :class="{ 'is-active': showMenu }"
       >
         <div class="navbar-start" v-if="$store.state.user">
           <div class="navbar-item has-dropdown is-hoverable">
@@ -36,9 +43,7 @@
               <a class="navbar-item" href="#"> Survey Selection </a>
 
               <hr class="navbar-divider" />
-              <a class="navbar-item" @click="$store.dispatch('logout')">
-                Logout
-              </a>
+              <a class="navbar-item" @click="logout"> Logout </a>
             </div>
           </div>
         </div>
@@ -53,10 +58,16 @@ export default {
 
   data() {
     return {
-      // Default to not mobile to ensure the icons are not added in first render before it is calculated
-      isMobile: false,
-      showMobileMenu: false,
+      showMenu: false,
     };
+  },
+
+  methods: {
+    logout() {
+      this.showMenu = false;
+
+      this.$store.dispatch("logout");
+    },
   },
 };
 </script>

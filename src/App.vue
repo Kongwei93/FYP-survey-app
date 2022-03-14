@@ -6,20 +6,10 @@
 </template>
 
 <script>
-import { onBeforeMount } from "vue";
-import { useStore } from "vuex";
 import Navi from "./components/Navigation.vue";
 
 export default {
   components: { Navi },
-
-  setup() {
-    const store = useStore();
-
-    onBeforeMount(() => {
-      store.dispatch("fetchUser");
-    });
-  },
 };
 </script>
 
