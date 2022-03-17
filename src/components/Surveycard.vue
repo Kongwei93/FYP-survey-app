@@ -1,6 +1,6 @@
 <template>
   <div class="column is-4">
-    <a href="#">
+    <a v-bind:href="survey.link">
       <div class="card">
         <div class="card-image">
           <figure class="image">

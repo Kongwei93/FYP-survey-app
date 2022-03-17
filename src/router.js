@@ -43,6 +43,14 @@ const router = createRouter({
       name: "terms",
       component: () => import("./views/Terms.vue"),
     },
+    {
+      path: "/perceivedss",
+      name: "perceivedss",
+      component: () => import("./views/PerceivedSS.vue"),
+      meta: {
+        requiresAuth: true,
+      },
+    },
 
     // @todo Add a 404 not found
   ],

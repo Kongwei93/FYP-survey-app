@@ -8,13 +8,6 @@
         <p class="navbar-item py-3">
           <strong>NUS Mental Health Assesment</strong>
         </p>
-        <button
-          v-if="$router.view === terms"
-          class="button is-right"
-          @click="$router.push({ name: 'register' })"
-        >
-          back
-        </button>
 
         <a
           v-if="$store.state.user"
@@ -39,8 +32,12 @@
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link"> Menu </a>
             <div class="navbar-dropdown is-boxed">
-              <a class="navbar-item" href="#"> Home </a>
-              <a class="navbar-item" href="#"> Survey Selection </a>
+              <a class="navbar-item" href="#" @click="showMenu = !showMenu">
+                Home
+              </a>
+              <a class="navbar-item" href="#" @click="showMenu = !showMenu">
+                Survey Selection
+              </a>
 
               <hr class="navbar-divider" />
               <a class="navbar-item" @click="logout"> Logout </a>

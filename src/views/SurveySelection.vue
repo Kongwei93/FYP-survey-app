@@ -26,6 +26,7 @@ least a junior high school education. The items are easy to understand, and the 
 Moreover, the questions are of a general nature and hence are relatively free of content specific to any subpopulation
 group. The questions in the PSS ask about feelings and thoughts during the last month. In each case, respondents are
 asked how often they felt a certain way.`,
+          link: "#/perceivedss",
         },
         {
           title: "Another survey",

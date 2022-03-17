@@ -19,6 +19,9 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+body {
+  padding-top: 65px;
+}
 
 /* Color input pink if it is invalid --> e.g. when telephone number does not match the specified pattern */
 /* Will only activate if the placeholder is not currently being shown, meaning will not show before user type anything */
