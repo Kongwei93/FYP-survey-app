@@ -51,6 +51,14 @@ const router = createRouter({
         requiresAuth: true,
       },
     },
+    {
+      path: "/patienthq",
+      name: "patienthq",
+      component: () => import("./views/PatientHQ.vue"),
+      meta: {
+        requiresAuth: true,
+      },
+    },
 
     // @todo Add a 404 not found
   ],

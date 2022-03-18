@@ -37,4 +37,7 @@ input:not(:placeholder-shown):invalid {
   align-items: center;
   justify-content: center;
 }
+.markdown-body {
+  white-space: pre-wrap;
+}
 </style>
