@@ -20,6 +20,16 @@ const router = createRouter({
   routes: [
     {
       path: "/",
+      name: "home",
+      component: () => import("./views/Home.vue"),
+      // Pass URL query parameters as prop to component
+      props: (route) => route.query,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/surveyselection",
       name: "surveyselection",
       component: () => import("./views/SurveySelection.vue"),
       // Pass URL query parameters as prop to component

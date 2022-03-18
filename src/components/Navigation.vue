@@ -32,10 +32,19 @@
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link"> Menu </a>
             <div class="navbar-dropdown is-boxed">
-              <a class="navbar-item" href="#" @click="showMenu = !showMenu">
+              <a
+                class="navbar-item"
+                @click="(showMenu = !showMenu), $router.push({ name: 'home' })"
+              >
                 Home
               </a>
-              <a class="navbar-item" href="#" @click="showMenu = !showMenu">
+              <a
+                class="navbar-item"
+                @click="
+                  (showMenu = !showMenu),
+                    $router.push({ name: 'surveyselection' })
+                "
+              >
                 Survey Selection
               </a>
 

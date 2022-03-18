@@ -89,8 +89,7 @@ export default {
         "e. Poor appetite or overeating.",
         "f. Feeling bad about yourself, or that you are a failure, or have let yourself or your family down.",
         "g. Trouble concentrating on things, such as reading the newspaper or watching TV.",
-        `h. Moving or speaking so slowly that other people could have noticed.
-         Or the opposite; being so fidgety or restless that you have been moving around more than usual`,
+        `h. Moving or speaking so slowly that other people could have noticed.\nOr the opposite; being so fidgety or restless that you have been moving around more than usual`,
         "i. Thoughts that you would be better off dead or of hurting yourself in some way.",
       ],
     };

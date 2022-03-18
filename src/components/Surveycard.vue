@@ -4,11 +4,7 @@
       <div class="card">
         <div class="card-image">
           <figure class="image">
-            <img
-              loading="lazy"
-              src="/stress-benefits.jpg"
-              alt="Perceived Stress Scale"
-            />
+            <img src="/stress-benefits.jpg" alt="Perceived Stress Scale" />
           </figure>
         </div>
         <div class="card-content">
@@ -22,7 +18,7 @@
                 class=""
                 v-if="!readMoreActivated"
                 @click="activateReadMore"
-                href="#"
+                href="#/surveyselection"
               >
                 Read more...
               </a>
@@ -32,7 +28,7 @@
                 class=""
                 v-if="readMoreActivated"
                 @click="activateReadLess"
-                href="#"
+                href="#/surveyselection"
               >
                 Read less...
               </a>

@@ -1,7 +1,11 @@
 <template>
   <div>
     <Navi />
-    <router-view />
+    <router-view v-slot="{ Component }">
+      <transition name="fade">
+        <component :is="Component" :key="$route.path"></component>
+      </transition>
+    </router-view>
   </div>
 </template>
 
@@ -37,7 +41,12 @@ input:not(:placeholder-shown):invalid {
   align-items: center;
   justify-content: center;
 }
-.markdown-body {
-  white-space: pre-wrap;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
