@@ -26,7 +26,16 @@
               >
                 Read more...
               </a>
+
               <span v-if="readMoreActivated" v-html="survey.text"></span>
+              <a
+                class=""
+                v-if="readMoreActivated"
+                @click="activateReadLess"
+                href="#"
+              >
+                Read less...
+              </a>
             </div>
           </div>
         </div>
@@ -50,6 +59,10 @@ export default {
   methods: {
     activateReadMore() {
       this.readMoreActivated = true;
+    },
+    activateReadLess() {
+      this.readMoreActivated = false;
+      this.survey.text.slice(0, 200);
     },
   },
 };
