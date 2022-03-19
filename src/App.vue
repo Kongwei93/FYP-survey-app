@@ -1,11 +1,12 @@
 <template>
   <div>
     <Navi />
-    <router-view v-slot="{ Component }">
+    <!-- <router-view v-slot="{ Component }">
       <transition name="fade">
         <component :is="Component" :key="$route.path"></component>
       </transition>
-    </router-view>
+    </router-view> -->
+    <router-view />
   </div>
 </template>
 

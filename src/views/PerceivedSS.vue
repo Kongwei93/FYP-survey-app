@@ -1,59 +1,65 @@
 <template>
   <div class="title">{{ title }}</div>
-  <div class="card">
-    <div class="dropdown">
-      <div class="dropdown-trigger">
-        <button
-          class="button"
-          aria-haspopup="true"
-          aria-controls="dropdown-menu3"
+  <div class="dropdown is-hoverable" :class="{ 'is-active': showQuestions }">
+    <div class="dropdown-trigger">
+      <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+        <span>Question List</span>
+        <span class="icon is-small">
+          <i class="fas fa-angle-down" aria-hidden="true"></i>
+        </span>
+      </button>
+    </div>
+    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+      <div class="dropdown-content">
+        <a
+          class="dropdown-item"
+          role="button"
+          v-for="(question, id) in questions"
+          :question="question"
+          :key="id"
+          @click="(position = id), (showQuestions = false)"
         >
-          <span>Questions</span>
-          <span class="icon is-small">
-            <i class="fas fa-angle-down" aria-hidden="true"></i>
-          </span>
-        </button>
-      </div>
-      <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-        <div class="dropdown-content">
-          <a href="#" class="dropdown-item"> Overview </a>
-          <a href="#" class="dropdown-item"> Modifiers </a>
-          <a href="#" class="dropdown-item"> Grid </a>
-          <a href="#" class="dropdown-item"> Form </a>
-          <a href="#" class="dropdown-item"> Elements </a>
-          <a href="#" class="dropdown-item"> Components </a>
-          <a href="#" class="dropdown-item"> Layout </a>
-          <hr class="dropdown-divider" />
-          <a href="#" class="dropdown-item"> More </a>
-        </div>
+          Question {{ id + 1 }}
+        </a>
       </div>
     </div>
+  </div>
+  <div class="card">
     <div class="card-content">
       <div class="content">
-        <p class="title is-5">{{ questions[0] }}</p>
+        <p class="title is-5">{{ questions[position] }}</p>
       </div>
     </div>
   </div>
   <div class="field py-3">
     <div class="field">
-      <button class="button is-medium is-fullwidth" value="0">Never</button>
+      <button class="button is-medium is-fullwidth" value="0" @click="answered">
+        Never
+      </button>
     </div>
     <div class="field">
-      <button class="button is-medium is-fullwidth" value="1">
+      <button class="button is-medium is-fullwidth" value="1" @click="answered">
         Almost Never
       </button>
     </div>
     <div class="field">
-      <button class="button is-medium is-fullwidth" value="2">Sometimes</button>
+      <button class="button is-medium is-fullwidth" value="2" @click="answered">
+        Sometimes
+      </button>
     </div>
     <div class="field">
-      <button class="button is-medium is-fullwidth" value="3">
+      <button class="button is-medium is-fullwidth" value="3" @click="answered">
         Fairly Often
       </button>
     </div>
     <div class="field">
-      <button class="button is-medium is-fullwidth" value="4">Often</button>
+      <button class="button is-medium is-fullwidth" value="4" @click="answered">
+        Often
+      </button>
     </div>
+  </div>
+  <div class="has-text-centered" v-if="position === 9">
+    <button class="button is-success is-medium">Submit</button>
   </div>
 </template>
 
@@ -64,6 +70,8 @@ export default {
   data() {
     return {
       position: 0,
+
+      showQuestions: false,
 
       title: "Perceived Stress Scale",
 
@@ -79,7 +87,15 @@ export default {
         "In the last month, how often have you been angered because of things that were outside of your control?",
         "In the last month, how often have you felt difficulties were piling up so high that you could not overcome them?",
       ],
+      optionValue: [{}],
     };
+  },
+  methods: {
+    answered() {
+      if (this.position < 9) {
+        this.position++;
+      }
+    },
   },
 };
 </script>
