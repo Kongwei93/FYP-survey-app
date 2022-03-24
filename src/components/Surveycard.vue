@@ -1,10 +1,10 @@
 <template>
   <div class="column is-4">
-    <a v-bind:href="survey.link">
+    <a :href="survey.link">
       <div class="card">
         <div class="card-image">
           <figure class="image">
-            <img src="/stress-benefits.jpg" alt="Perceived Stress Scale" />
+            <img :src="survey.image" />
           </figure>
         </div>
         <div class="card-content">

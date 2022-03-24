@@ -2,8 +2,10 @@
   <div class="title">{{ title }}</div>
   <div class="dropdown is-hoverable">
     <div class="dropdown-trigger">
-      <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+      <button class="button">
         <span>Question {{ position + 1 }}</span>
+        <span v-if="position === 0">{{ "." + questionNum[subPosition] }}</span>
+
         <span class="icon is-small">
           <i class="fas fa-angle-down" aria-hidden="true"></i>
         </span>

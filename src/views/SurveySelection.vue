@@ -25,6 +25,8 @@ export default {
           last month. In each case, respondents areasked how often they felt a certain way.`,
 
           link: "#/perceivedss",
+
+          image: "stress-benefits.jpg",
         },
         {
           title: "Patient Health Questionnaire",
@@ -34,6 +36,8 @@ export default {
           assesment tool for users. All diagnosis should only be provided by a trained health professional.`,
 
           link: "#/patienthq",
+
+          image: "PHQ.jpg",
         },
       ],
     };
