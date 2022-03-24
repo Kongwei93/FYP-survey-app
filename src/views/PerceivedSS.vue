@@ -1,9 +1,9 @@
 <template>
   <div class="title">{{ title }}</div>
-  <div class="dropdown is-hoverable" :class="{ 'is-active': showQuestions }">
+  <div class="dropdown is-hoverable">
     <div class="dropdown-trigger">
       <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-        <span>Question List</span>
+        <span>Question {{ position + 1 }}</span>
         <span class="icon is-small">
           <i class="fas fa-angle-down" aria-hidden="true"></i>
         </span>
@@ -17,7 +17,7 @@
           v-for="(question, id) in questions"
           :question="question"
           :key="id"
-          @click="(position = id), (showQuestions = false)"
+          @click="position = id"
         >
           Question {{ id + 1 }}
         </a>
@@ -70,8 +70,6 @@ export default {
   data() {
     return {
       position: 0,
-
-      showQuestions: false,
 
       title: "Perceived Stress Scale",
 
