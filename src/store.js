@@ -14,6 +14,7 @@ export default createStore({
 
   state: {
     user: null,
+    stressScore: 0,
   },
   mutations: {
     SET_USER(state, user) {

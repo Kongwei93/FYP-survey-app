@@ -69,7 +69,22 @@ const router = createRouter({
         requiresAuth: true,
       },
     },
-
+    {
+      path: "/results",
+      name: "results",
+      component: () => import("./views/Results.vue"),
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: "/cesd",
+      name: "cesd",
+      component: () => import("./views/CesD.vue"),
+      meta: {
+        requiresAuth: true,
+      },
+    },
     // @todo Add a 404 not found
   ],
 });

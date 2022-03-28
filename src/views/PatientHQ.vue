@@ -43,27 +43,42 @@
   </div>
   <div class="field py-3">
     <div class="field">
-      <button class="button is-medium is-fullwidth" value="0" @click="answered">
+      <button
+        class="button is-medium is-fullwidth is-rounded"
+        @click="answered1"
+      >
         Never
       </button>
     </div>
     <div class="field">
-      <button class="button is-medium is-fullwidth" value="1" @click="answered">
+      <button
+        class="button is-medium is-fullwidth is-rounded"
+        @click="answered2"
+      >
         Almost Never
       </button>
     </div>
     <div class="field">
-      <button class="button is-medium is-fullwidth" value="2" @click="answered">
+      <button
+        class="button is-medium is-fullwidth is-rounded"
+        @click="answered3"
+      >
         Sometimes
       </button>
     </div>
     <div class="field">
-      <button class="button is-medium is-fullwidth" value="3" @click="answered">
+      <button
+        class="button is-medium is-fullwidth is-rounded"
+        @click="answered4"
+      >
         Fairly Often
       </button>
     </div>
     <div class="field">
-      <button class="button is-medium is-fullwidth" value="4" @click="answered">
+      <button
+        class="button is-medium is-fullwidth is-rounded"
+        @click="answered5"
+      >
         Often
       </button>
     </div>

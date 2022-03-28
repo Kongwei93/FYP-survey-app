@@ -27,7 +27,8 @@
   <div class="card">
     <div class="card-content">
       <div class="content">
-        <p class="title is-5">{{ questions[position] }}</p>
+        <p class="title is-5">During the past week</p>
+        <p class="subtitle is-5">{{ questions[position] }}</p>
       </div>
     </div>
   </div>
@@ -38,7 +39,7 @@
         class="button is-medium is-fullwidth is-rounded"
         @click="answered1"
       >
-        Never
+        Rarely (less than 1 day)
       </button>
     </div>
     <div class="field">
@@ -46,7 +47,7 @@
         class="button is-medium is-fullwidth is-rounded"
         @click="answered2"
       >
-        Almost Never
+        Sometimes (1-2 days)
       </button>
     </div>
     <div class="field">
@@ -54,7 +55,7 @@
         class="button is-medium is-fullwidth is-rounded"
         @click="answered3"
       >
-        Sometimes
+        Occasionally (3-4 days)
       </button>
     </div>
     <div class="field">
@@ -62,19 +63,11 @@
         class="button is-medium is-fullwidth is-rounded"
         @click="answered4"
       >
-        Fairly Often
-      </button>
-    </div>
-    <div class="field">
-      <button
-        class="button is-medium is-fullwidth is-rounded"
-        @click="answered5"
-      >
-        Often
+        Mostly (5-6 days)
       </button>
     </div>
   </div>
-  <div class="has-text-centered" v-if="optionValues.length > 9">
+  <div class="has-text-centered" v-if="optionValues.length > 19">
     <button class="button is-success is-medium" @click.once="submit">
       Submit
     </button>
@@ -89,19 +82,29 @@ export default {
     return {
       position: 0,
 
-      title: "Perceived Stress Scale",
+      title: "CES-D",
 
       questions: [
-        "In the last month, how often have you been upset because of something that happened unexpectedly?",
-        "In the last month, how often have you felt that you were unable to control the important things in your life?",
-        "In the last month, how often have you felt nervous and stressed",
-        "In the last month, how often have you felt confident about your ability to handle your personal problems?",
-        "In the last month, how often have you felt that things were going your way?",
-        "In the last month, how often have you found that you could not cope with all the things you had to do?",
-        "In the last month, how often have you been able to control irritations in your life?",
-        "In the last month, how often have you felt that you were on top of things?",
-        "In the last month, how often have you been angered because of things that were outside of your control?",
-        "In the last month, how often have you felt difficulties were piling up so high that you could not overcome them?",
+        `I was bothered by things that ususally don't bother me.`,
+        `I did not feel like eating; my appetite was poor.`,
+        `I felt that I could not shake off the blues even with help from my family or friends.`,
+        `I felt i was just as good as other people.`,
+        `I had trouble keeping my mind on what I was doing.`,
+        `I felt depressed.`,
+        `I felt that everything I did was an effort.`,
+        `I felt hopeful about the future.`,
+        `I though my life had been a failure.`,
+        `I felt fearful.?`,
+        `My sleep was restless.`,
+        `I was happy.`,
+        `I talked less than usual.`,
+        `I felt lonely.`,
+        `People were unfriendly.`,
+        `I enjoyed life.`,
+        `I had crying spells.`,
+        `I felt sad.`,
+        `I felt that people dislike me.`,
+        `I could not get "going".`,
       ],
       optionValues: [],
     };
@@ -110,71 +113,63 @@ export default {
     answered1() {
       if (
         this.position === 4 ||
-        this.position === 5 ||
-        this.position === 7 ||
-        this.position === 8
+        this.position === 8 ||
+        this.position === 12 ||
+        this.position === 16
       ) {
-        this.optionValues[this.position] = 4;
+        this.optionValues[this.position] = 3;
       } else {
         this.optionValues[this.position] = 0;
       }
+
       this.nextQuestion();
     },
     answered2() {
       if (
         this.position === 4 ||
-        this.position === 5 ||
-        this.position === 7 ||
-        this.position === 8
+        this.position === 8 ||
+        this.position === 12 ||
+        this.position === 16
       ) {
-        this.optionValues[this.position] = 3;
+        this.optionValues[this.position] = 2;
       } else {
         this.optionValues[this.position] = 1;
       }
+
       this.nextQuestion();
     },
     answered3() {
-      this.optionValues[this.position] = 2;
+      if (
+        this.position === 4 ||
+        this.position === 8 ||
+        this.position === 12 ||
+        this.position === 16
+      ) {
+        this.optionValues[this.position] = 1;
+      } else {
+        this.optionValues[this.position] = 2;
+      }
       this.nextQuestion();
     },
     answered4() {
       if (
         this.position === 4 ||
-        this.position === 5 ||
-        this.position === 7 ||
-        this.position === 8
-      ) {
-        this.optionValues[this.position] = 1;
-      } else {
-        this.optionValues[this.position] = 3;
-      }
-      this.nextQuestion();
-    },
-    answered5() {
-      if (
-        this.position === 4 ||
-        this.position === 5 ||
-        this.position === 7 ||
-        this.position === 8
+        this.position === 8 ||
+        this.position === 12 ||
+        this.position === 16
       ) {
         this.optionValues[this.position] = 0;
       } else {
-        this.optionValues[this.position] = 4;
+        this.optionValues[this.position] = 3;
       }
+
       this.nextQuestion();
     },
+
     nextQuestion() {
-      if (this.position < 9) {
+      if (this.position < 19) {
         this.position++;
       }
-    },
-    submit() {
-      this.$store.state.stressScore = 0;
-      for (this.i = 0; this.i < this.optionValues.length; this.i++) {
-        this.$store.state.stressScore =
-          this.$store.state.stressScore + this.optionValues[this.i];
-      }
-      this.$router.push({ name: "results" });
     },
   },
 };

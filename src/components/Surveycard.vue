@@ -3,7 +3,7 @@
     <a :href="survey.link">
       <div class="card">
         <div class="card-image">
-          <figure class="image">
+          <figure class="image is-3by2">
             <img :src="survey.image" />
           </figure>
         </div>
