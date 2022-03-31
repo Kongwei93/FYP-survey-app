@@ -41,50 +41,83 @@
       </div>
     </div>
   </div>
-  <div class="field py-3">
-    <div class="field">
-      <button
-        class="button is-medium is-fullwidth is-rounded"
-        @click="answered1"
-      >
-        Never
-      </button>
-    </div>
-    <div class="field">
-      <button
-        class="button is-medium is-fullwidth is-rounded"
-        @click="answered2"
-      >
-        Almost Never
-      </button>
-    </div>
-    <div class="field">
-      <button
-        class="button is-medium is-fullwidth is-rounded"
-        @click="answered3"
-      >
-        Sometimes
-      </button>
-    </div>
-    <div class="field">
-      <button
-        class="button is-medium is-fullwidth is-rounded"
-        @click="answered4"
-      >
-        Fairly Often
-      </button>
-    </div>
-    <div class="field">
-      <button
-        class="button is-medium is-fullwidth is-rounded"
-        @click="answered5"
-      >
-        Often
-      </button>
+
+  <div class="questionOne" v-if="position === 0">
+    <div class="field py-3">
+      <div class="field">
+        <button
+          class="button is-medium is-fullwidth is-rounded"
+          @click="answered1"
+        >
+          Not at all
+        </button>
+      </div>
+      <div class="field">
+        <button
+          class="button is-medium is-fullwidth is-rounded"
+          @click="answered2"
+        >
+          Several days
+        </button>
+      </div>
+      <div class="field">
+        <button
+          class="button is-medium is-fullwidth is-rounded"
+          @click="answered3"
+        >
+          More than half the days
+        </button>
+      </div>
+      <div class="field">
+        <button
+          class="button is-medium is-fullwidth is-rounded"
+          @click="answered4"
+        >
+          Nearly everyday
+        </button>
+      </div>
     </div>
   </div>
-  <div class="has-text-centered" v-if="position === 1">
-    <button class="button is-success is-medium">Submit</button>
+  <div class="questionTwo" v-if="position === 1">
+    <div class="field py-3">
+      <div class="field">
+        <button
+          class="button is-medium is-fullwidth is-rounded"
+          @click="answered1"
+        >
+          Not difficult at all
+        </button>
+      </div>
+      <div class="field">
+        <button
+          class="button is-medium is-fullwidth is-rounded"
+          @click="answered2"
+        >
+          Somewhat difficult
+        </button>
+      </div>
+      <div class="field">
+        <button
+          class="button is-medium is-fullwidth is-rounded"
+          @click="answered3"
+        >
+          Very difficult
+        </button>
+      </div>
+      <div class="field">
+        <button
+          class="button is-medium is-fullwidth is-rounded"
+          @click="answered4"
+        >
+          Extremely difficult
+        </button>
+      </div>
+    </div>
+    <div class="has-text-centered" v-if="optionValues.length > 9">
+      <button class="button is-success is-medium" @click.once="submit">
+        Submit
+      </button>
+    </div>
   </div>
 </template>
 
@@ -119,15 +152,54 @@ export default {
       ],
 
       questionNum: ["a", "b", "c", "d", "e", "f", "g", "h", "i"],
+
+      optionValues: [],
     };
   },
   methods: {
-    answered() {
+    answered1() {
+      this.optionValues[this.subPosition] = 0;
+      this.nextQuestion();
+    },
+    answered2() {
+      this.optionValues[this.subPosition] = 1;
+      this.nextQuestion();
+    },
+    answered3() {
+      this.optionValues[this.subPosition] = 2;
+      this.nextQuestion();
+    },
+    answered4() {
+      this.optionValues[this.subPosition] = 3;
+      this.nextQuestion();
+    },
+    nextQuestion() {
       if (this.subPosition < 8) {
         this.subPosition++;
       } else {
+        this.subPosition = 9;
         this.position = 1;
       }
+    },
+    submit() {
+      // Sums all the values in this array into a single value
+      const newPHQScore = this.optionValues.reduce(
+        (acc, curr) => acc + curr,
+        0
+      );
+
+      // Save it into vuex using a mutation
+      this.$store.commit("updatePHQScore", newPHQScore);
+      if (newPHQScore > 4 && newPHQScore < 15) {
+        this.$store.commit("pHQResults2");
+      } else if (newPHQScore > 14 && newPHQScore < 20) {
+        this.$store.commit("pHQResults3");
+      } else if (newPHQScore > 20) {
+        this.$store.commit("pHQResults4");
+      } else this.$store.commit("pHQResults1");
+
+      // Change view once everything is done
+      this.$router.push({ name: "results" });
     },
   },
 };

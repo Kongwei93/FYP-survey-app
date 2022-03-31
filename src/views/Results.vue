@@ -1,13 +1,67 @@
 <template>
-  <div class="card">
-    <!-- <div class="card-image">
+  <div class="container">
+    <div class="columns is-centered">
+      <div
+        class="notification is-success has-text-centered"
+        v-if="results == 1"
+      >
+        You score a {{ pHQScore }}/30 on the Patient Health Questionnaire.
+        <br />
+        This suggests that you do not require any forms of treatment for
+        depression.
+      </div>
+      <div class="notification is-info has-text-centered" v-if="results == 2">
+        You score a {{ pHQScore }}/30 on the Patient Health Questionnaire.
+        <br />
+        You are showing mild signs of depression. Seek help from a healthcare
+        professional.
+      </div>
+      <div
+        class="notification is-warning has-text-centered"
+        v-if="results == 3"
+      >
+        You score a {{ pHQScore }}/30 on the Patient Health Questionnaire.
+        <br />
+        You are showing moderate signs of depression. Seek help from a
+        healthcare professional.
+      </div>
+      <div class="notification is-danger has-text-centered" v-if="results == 4">
+        You score a {{ pHQScore }}/30 on the Patient Health Questionnaire.
+        <br />
+        You are showing severe signs of depression. Seek help from a healthcare
+        professional.
+      </div>
+      <div class="card" v-if="results == 5">
         <figure class="image is-3by2">
-          <img :src="PHQ.jpg" />
+          <img src="lowStressLevels.jpg" />
         </figure>
-      </div> -->
-    <div class="card-content">
-      <p class="title is-5">{{ stressScore }}</p>
-      <div class="subtitle is-6"></div>
+        <div class="notification is-success has-text-centered">
+          You score a {{ stressScore }}/40 on the Perceived Stress Scale.
+          <br />
+          You are exhibitng low stress levels.
+        </div>
+      </div>
+      <div class="card" v-if="results == 6">
+        <figure class="image is-3by2">
+          <img src="moderateStressLevels.jpg" />
+        </figure>
+        <div class="notification is-warning has-text-centered">
+          You score a {{ stressScore }}/40 on the Perceived Stress Scale.
+          <br />
+          You are exhibitng moderate stress levels. Seek help from a
+          professional.
+        </div>
+      </div>
+      <div class="card" v-if="results == 7">
+        <figure class="image is-3by2">
+          <img src="highStressLevels.jpg" />
+        </figure>
+        <div class="notification is-danger has-text-centered">
+          You score a {{ stressScore }}/40 on the Perceived Stress Scale.
+          <br />
+          You are exhibiting high stress levels. Seek help from a professional.
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -17,13 +71,20 @@ export default {
   name: "Results",
 
   data() {
-    return {
-      message: ["Low stress", "Moderate stress", "High perceived stress"],
-    };
+    return {};
   },
   computed: {
     stressScore() {
       return this.$store.state.stressScore;
+    },
+    pHQScore() {
+      return this.$store.state.pHQScore;
+    },
+    cesDScore() {
+      return this.$store.state.cesDScore;
+    },
+    results() {
+      return this.$store.state.results;
     },
   },
 };

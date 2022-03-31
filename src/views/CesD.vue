@@ -94,7 +94,7 @@ export default {
         `I felt that everything I did was an effort.`,
         `I felt hopeful about the future.`,
         `I though my life had been a failure.`,
-        `I felt fearful.?`,
+        `I felt fearful.`,
         `My sleep was restless.`,
         `I was happy.`,
         `I talked less than usual.`,
@@ -112,10 +112,10 @@ export default {
   methods: {
     answered1() {
       if (
-        this.position === 4 ||
-        this.position === 8 ||
-        this.position === 12 ||
-        this.position === 16
+        this.position === 3 ||
+        this.position === 7 ||
+        this.position === 11 ||
+        this.position === 15
       ) {
         this.optionValues[this.position] = 3;
       } else {
@@ -126,10 +126,10 @@ export default {
     },
     answered2() {
       if (
-        this.position === 4 ||
-        this.position === 8 ||
-        this.position === 12 ||
-        this.position === 16
+        this.position === 3 ||
+        this.position === 7 ||
+        this.position === 11 ||
+        this.position === 15
       ) {
         this.optionValues[this.position] = 2;
       } else {
@@ -140,10 +140,10 @@ export default {
     },
     answered3() {
       if (
-        this.position === 4 ||
-        this.position === 8 ||
-        this.position === 12 ||
-        this.position === 16
+        this.position === 3 ||
+        this.position === 7 ||
+        this.position === 11 ||
+        this.position === 15
       ) {
         this.optionValues[this.position] = 1;
       } else {
@@ -153,10 +153,10 @@ export default {
     },
     answered4() {
       if (
-        this.position === 4 ||
-        this.position === 8 ||
-        this.position === 12 ||
-        this.position === 16
+        this.position === 3 ||
+        this.position === 7 ||
+        this.position === 11 ||
+        this.position === 15
       ) {
         this.optionValues[this.position] = 0;
       } else {
@@ -170,6 +170,26 @@ export default {
       if (this.position < 19) {
         this.position++;
       }
+    },
+    submit() {
+      // Sums all the values in this array into a single value
+      const newCesDScore = this.optionValues.reduce(
+        (acc, curr) => acc + curr,
+        0
+      );
+
+      // Save it into vuex using a mutation
+      this.$store.commit("updateCesDScore", newCesDScore);
+      if (newCesDScore < 5) {
+        this.$store.commit("cesDResults1");
+      } else if (newCesDScore < 15) {
+        this.$store.commit("cesDResults2");
+      } else if (newCesDScore < 20) {
+        this.$store.commit("cesDResults3");
+      } else this.$store.commit("cesDResults4");
+
+      // Change view once everything is done
+      this.$router.push({ name: "results" });
     },
   },
 };

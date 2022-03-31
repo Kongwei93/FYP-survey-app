@@ -11,10 +11,14 @@ import {
 
 export default createStore({
   plugins: [createPersistedState()],
+  strict: true,
 
   state: {
     user: null,
     stressScore: 0,
+    pHQScore: 0,
+    cesDScore: 0,
+    results: 0,
   },
   mutations: {
     SET_USER(state, user) {
@@ -23,6 +27,36 @@ export default createStore({
 
     CLEAR_USER(state) {
       state.user = null;
+    },
+    updateStressScore(state, newStressScore) {
+      state.stressScore = newStressScore;
+    },
+    updatePHQScore(state, newPHQScore) {
+      state.pHQScore = newPHQScore;
+    },
+    updateCesDScore(state, newCesDScore) {
+      state.cesDScore = newCesDScore;
+    },
+    pHQResults1(state) {
+      state.results = 1;
+    },
+    pHQResults2(state) {
+      state.results = 2;
+    },
+    pHQResults3(state) {
+      state.results = 3;
+    },
+    pHQResults4(state) {
+      state.results = 4;
+    },
+    stressResults1(state) {
+      state.results = 5;
+    },
+    stressResults2(state) {
+      state.results = 6;
+    },
+    stressResults3(state) {
+      state.results = 7;
     },
   },
   actions: {

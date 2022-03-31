@@ -109,10 +109,10 @@ export default {
   methods: {
     answered1() {
       if (
+        this.position === 3 ||
         this.position === 4 ||
-        this.position === 5 ||
-        this.position === 7 ||
-        this.position === 8
+        this.position === 6 ||
+        this.position === 7
       ) {
         this.optionValues[this.position] = 4;
       } else {
@@ -122,10 +122,10 @@ export default {
     },
     answered2() {
       if (
+        this.position === 3 ||
         this.position === 4 ||
-        this.position === 5 ||
-        this.position === 7 ||
-        this.position === 8
+        this.position === 6 ||
+        this.position === 7
       ) {
         this.optionValues[this.position] = 3;
       } else {
@@ -139,10 +139,10 @@ export default {
     },
     answered4() {
       if (
+        this.position === 3 ||
         this.position === 4 ||
-        this.position === 5 ||
-        this.position === 7 ||
-        this.position === 8
+        this.position === 6 ||
+        this.position === 7
       ) {
         this.optionValues[this.position] = 1;
       } else {
@@ -152,10 +152,10 @@ export default {
     },
     answered5() {
       if (
+        this.position === 3 ||
         this.position === 4 ||
-        this.position === 5 ||
-        this.position === 7 ||
-        this.position === 8
+        this.position === 6 ||
+        this.position === 7
       ) {
         this.optionValues[this.position] = 0;
       } else {
@@ -169,11 +169,21 @@ export default {
       }
     },
     submit() {
-      this.$store.state.stressScore = 0;
-      for (this.i = 0; this.i < this.optionValues.length; this.i++) {
-        this.$store.state.stressScore =
-          this.$store.state.stressScore + this.optionValues[this.i];
-      }
+      // Sums all the values in this array into a single value
+      const newStressScore = this.optionValues.reduce(
+        (acc, curr) => acc + curr,
+        0
+      );
+
+      // Save it into vuex using a mutation
+      this.$store.commit("updateStressScore", newStressScore);
+      if (newStressScore > 13 && newStressScore < 27) {
+        this.$store.commit("stressResults2");
+      } else if (newStressScore > 26) {
+        this.$store.commit("stressResults3");
+      } else this.$store.commit("stressResults1");
+
+      // Change view once everything is done
       this.$router.push({ name: "results" });
     },
   },
