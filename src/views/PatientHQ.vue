@@ -194,7 +194,7 @@ export default {
         this.$store.commit("pHQResults2");
       } else if (newPHQScore > 14 && newPHQScore < 20) {
         this.$store.commit("pHQResults3");
-      } else if (newPHQScore > 20) {
+      } else if (newPHQScore > 20 || newPHQScore === 20) {
         this.$store.commit("pHQResults4");
       } else this.$store.commit("pHQResults1");
 

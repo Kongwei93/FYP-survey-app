@@ -1,35 +1,49 @@
 <template>
   <div class="container">
     <div class="columns is-centered">
-      <div
-        class="notification is-success has-text-centered"
-        v-if="results == 1"
-      >
-        You score a {{ pHQScore }}/30 on the Patient Health Questionnaire.
-        <br />
-        This suggests that you do not require any forms of treatment for
-        depression.
+      <div class="card" v-if="results == 1">
+        <figure class="image is-3by2">
+          <img src="PHQLow.jpg" />
+        </figure>
+        <div class="notification is-success has-text-centered">
+          You score a {{ pHQScore }}/30 on the Patient Health Questionnaire.
+          <br />
+          This suggests that you do not require any forms of treatment for
+          depression.
+        </div>
       </div>
-      <div class="notification is-info has-text-centered" v-if="results == 2">
-        You score a {{ pHQScore }}/30 on the Patient Health Questionnaire.
-        <br />
-        You are showing mild signs of depression. Seek help from a healthcare
-        professional.
+      <div class="card" v-if="results == 2">
+        <figure class="image is-3by2">
+          <img src="PHQmild.jpg" />
+        </figure>
+        <div class="notification is-info has-text-centered">
+          You score a {{ pHQScore }}/30 on the Patient Health Questionnaire.
+          <br />
+          You are showing mild signs of depression. Seek help from a healthcare
+          professional.
+        </div>
       </div>
-      <div
-        class="notification is-warning has-text-centered"
-        v-if="results == 3"
-      >
-        You score a {{ pHQScore }}/30 on the Patient Health Questionnaire.
-        <br />
-        You are showing moderate signs of depression. Seek help from a
-        healthcare professional.
+      <div class="card" v-if="results == 3">
+        <figure class="image is-3by2">
+          <img src="PHQmoderate.jpg" />
+        </figure>
+        <div class="notification is-warning has-text-centered">
+          You score a {{ pHQScore }}/30 on the Patient Health Questionnaire.
+          <br />
+          You are showing moderate signs of depression. Seek help from a
+          healthcare professional.
+        </div>
       </div>
-      <div class="notification is-danger has-text-centered" v-if="results == 4">
-        You score a {{ pHQScore }}/30 on the Patient Health Questionnaire.
-        <br />
-        You are showing severe signs of depression. Seek help from a healthcare
-        professional.
+      <div class="card" v-if="results == 4">
+        <figure class="image is-3by2">
+          <img src="PHQsevere.jpg" />
+        </figure>
+        <div class="notification is-danger has-text-centered">
+          You score a {{ pHQScore }}/30 on the Patient Health Questionnaire.
+          <br />
+          You are showing severe signs of depression. Seek help from a
+          healthcare professional.
+        </div>
       </div>
       <div class="card" v-if="results == 5">
         <figure class="image is-3by2">
