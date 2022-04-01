@@ -107,6 +107,15 @@ export default {
         `I could not get "going".`,
       ],
       optionValues: [],
+      dysphoria: [],
+      anhedonia: [],
+      appetite: [],
+      sleep: [],
+      thinking: [],
+      guilt: [],
+      tired: [],
+      movement: [],
+      suicidal: [],
     };
   },
   methods: {
@@ -177,19 +186,42 @@ export default {
         (acc, curr) => acc + curr,
         0
       );
+      this.dysphoria = [
+        this.optionsValues[1],
+        this.optionValues[3],
+        this.optionValues[5],
+      ];
+      this.anhedonia = [this.optionValues[7], this.optionValues[9]];
+      this.appetite = [this.optionsValues[0], this.optionsValues[17]];
+      this.sleep = [
+        this.optionsValues[4],
+        this.optionsValues[10],
+        this.optionsValues[18],
+      ];
+      this.thinking = [this.optionsValues[2], this.optionsValues[19]];
+      this.guilt = [this.optionsValues[8], this.optionsValues[16]];
+      this.tired = [this.optionsValues[6], this.optionsValues[15]];
+      this.movement = [this.optionsValues[11], this.optionsValues[12]];
+      this.suicidal = [this.optionsValues[13], this.optionsValues[14]];
+
+      // dysphoria.some((x) => x == 4);
+      // anhedonia.some((x) => x == 4);
+      // appetite.some((x) => x == 4);
+      // sleep.some((x) => x == 4);
+      // thinking.some((x) => x == 4);
+      // guilt.some((x) => x == 4);
+      // tired.some((x) => x == 4);
+      // movement.some((x) => x == 4);
+      // suicidal.some((x) => x == 4);
 
       // Save it into vuex using a mutation
-      this.$store.commit("updateCesDScore", newCesDScore);
-      if (newCesDScore < 5) {
-        this.$store.commit("cesDResults1");
-      } else if (newCesDScore < 15) {
-        this.$store.commit("cesDResults2");
-      } else if (newCesDScore < 20) {
-        this.$store.commit("cesDResults3");
-      } else this.$store.commit("cesDResults4");
-
-      // Change view once everything is done
-      this.$router.push({ name: "results" });
+      // this.$store.commit("updateCesDScore", newCesDScore);
+      // if (this.anhedonia === true || this.dysphoria === true) {
+      //   //include depression category checks
+      // } else if (newCesDScore > 15) this.$store.commit("cesDResults2");
+      // else this.$store.commit("cesDResults1");
+      // // Change view once everything is done
+      // this.$router.push({ name: "results" });
     },
   },
 };

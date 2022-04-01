@@ -1,16 +1,8 @@
 <template>
   <section class="hero">
-    <div class="hero-body">
-      <div>
-        <p class="title has-text-centered">
-          <button
-            class="button is-left"
-            @click="$router.push({ name: 'register' })"
-          >
-            back</button
-          >Terms & Conditions
-        </p>
-      </div>
+    <div class="hero-body py-0">
+      <p class="title has-text-centered">Terms & Conditions</p>
+
       <div class="block">
         <p class="subtitle is-size-6">
           NUSmental.com ("we" or "NUSmental.com") is owned and operated by NUS.

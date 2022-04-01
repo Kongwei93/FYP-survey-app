@@ -8,6 +8,13 @@
         <p class="navbar-item py-3">
           <strong>NUS Mental Health Assesment</strong>
         </p>
+        <button
+          class="button is-responsive"
+          @click="$router.push({ name: 'register' })"
+          v-if="isTerms"
+        >
+          back
+        </button>
 
         <a
           v-if="$store.state.user"
@@ -73,6 +80,11 @@ export default {
       this.showMenu = false;
 
       this.$store.dispatch("logout");
+    },
+  },
+  computed: {
+    isTerms() {
+      return this.$route.name === "terms";
     },
   },
 };

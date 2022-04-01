@@ -15,9 +15,9 @@ export default createStore({
 
   state: {
     user: null,
-    stressScore: 0,
-    pHQScore: 0,
-    cesDScore: 0,
+    stressScore: null,
+    pHQScore: null,
+    cesDScore: null,
     results: 0,
   },
   mutations: {
