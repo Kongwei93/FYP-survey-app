@@ -28,7 +28,8 @@
     <div class="card-content">
       <div class="content">
         <p class="title is-5">During the past week</p>
-        <p class="subtitle is-5">{{ questions[position] }}</p>
+        <!-- <p class="subtitle is-5">{{ questions[position] }}</p> -->
+        <p class="subtitle is-5" v-html="questions[position]"></p>
       </div>
     </div>
   </div>
@@ -85,7 +86,7 @@ export default {
       title: "CES-D",
 
       questions: [
-        `I was bothered by things that ususally don't bother me.`,
+        `I was bothered <br /> by things that ususally don't bother me.`,
         `I did not feel like eating; my appetite was poor.`,
         `I felt that I could not shake off the blues even with help from my family or friends.`,
         `I felt i was just as good as other people.`,
@@ -119,6 +120,66 @@ export default {
     };
   },
   methods: {
+    major_depressive_episode() {
+      // New array for dysphoria anhedonia
+      // Continue if any of the value is equals to 4
+      if (
+        [
+          this.optionValues[1],
+          this.optionValues[3],
+          this.optionValues[5],
+          this.optionValues[7],
+          this.optionValues[9],
+        ].some((val) => val === 4)
+      ) {
+        /* Test for part 1 */
+        const numberOfSymptoms = [
+          this.appetite.some((val) => val === 4),
+          this.sleep.some((val) => val === 4),
+          this.thinking.some((val) => val === 4),
+          this.guilt.some((val) => val === 4),
+          this.tired.some((val) => val === 4),
+          this.movement.some((val) => val === 4),
+          this.suicidal.some((val) => val === 4),
+        ].reduce((acc, cur) => (acc + cur ? 1 : 0), 0);
+
+        if (numberOfSymptoms > 3) this.$store.commit("pHQResults", "rly bad");
+
+        /* Test for Part 2 */
+
+        /* Test for Part 3 */
+      }
+    },
+
+    major_depressive_episode2() {
+      // New array for dysphoria anhedonia
+      // Continue if any of the value is equals to 4
+      if (
+        [
+          this.optionValues[1],
+          this.optionValues[3],
+          this.optionValues[5],
+          this.optionValues[7],
+          this.optionValues[9],
+        ].some((val) => val === 4)
+      ) {
+        const numberOfSymptoms = [
+          this.appetite,
+          this.sleep,
+          this.thinking,
+          this.guilt,
+          this.tired,
+          this.movement,
+          this.suicidal,
+        ]
+          .map((array) => array.some((val) => val === 4))
+          .reduce((acc, cur) => (acc + cur ? 1 : 0), 0);
+
+        // If it is rly bad cos 4 symptoms or more than update vuex
+        if (numberOfSymptoms > 3) this.$store.commit("pHQResults", "rly bad");
+      }
+    },
+
     answered1() {
       if (
         this.position === 3 ||

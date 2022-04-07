@@ -2,7 +2,7 @@
   <div class="hero-body">
     <div class="container">
       <div class="columns is-centered">
-        <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+        <div class="column">
           <form class="login" @submit.prevent="login">
             <div class="field">
               <label for="" class="label">Email</label>
@@ -69,6 +69,12 @@ export default {
         email: this.email,
         password: this.password,
       });
+
+      // run the login logic here
+
+      // use mutation to save current user
+
+      // use this.$router.push({ name: "home" });
     },
   },
 };

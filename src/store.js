@@ -37,6 +37,9 @@ export default createStore({
     updateCesDScore(state, newCesDScore) {
       state.cesDScore = newCesDScore;
     },
+    pHQResults(state, results) {
+      state.results = results;
+    },
     pHQResults1(state) {
       state.results = 1;
     },

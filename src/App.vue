@@ -1,12 +1,7 @@
 <template>
   <div>
     <Navi />
-    <!-- <router-view v-slot="{ Component }">
-      <transition name="fade">
-        <component :is="Component" :key="$route.path"></component>
-      </transition>
-    </router-view> -->
-    <router-view />
+    <router-view class="container" />
   </div>
 </template>
 
@@ -23,9 +18,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-body {
-  padding-top: 65px;
 }
 
 /* Color input pink if it is invalid --> e.g. when telephone number does not match the specified pattern */
