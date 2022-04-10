@@ -76,6 +76,56 @@
           You are exhibiting high stress levels. Seek help from a professional.
         </div>
       </div>
+      <div class="card" v-if="results == 8">
+        <figure class="image is-3by2">
+          <img src="highStressLevels.jpg" />
+        </figure>
+        <div class="notification is-success has-text-centered">
+          You score a {{ cesDScore }}/60 on the CES Depression Scale.
+          <br />
+          You are exhibiting high stress levels. Seek help from a professional.
+        </div>
+      </div>
+      <div class="card" v-if="results == 9">
+        <figure class="image is-3by2">
+          <img src="highStressLevels.jpg" />
+        </figure>
+        <div class="notification is-primary has-text-centered">
+          You score a {{ cesDScore }}/60 on the CES Depression Scale.
+          <br />
+          You are exhibiting high stress levels. Seek help from a professional.
+        </div>
+      </div>
+      <div class="card" v-if="results == 10">
+        <figure class="image is-3by2">
+          <img src="highStressLevels.jpg" />
+        </figure>
+        <div class="notification is-info has-text-centered">
+          You score a {{ cesDScore }}/60 on the CES Depression Scale.
+          <br />
+          You are exhibiting high stress levels. Seek help from a professional.
+        </div>
+      </div>
+      <div class="card" v-if="results == 11">
+        <figure class="image is-3by2">
+          <img src="highStressLevels.jpg" />
+        </figure>
+        <div class="notification is-warning has-text-centered">
+          You score a {{ cesDScore }}/60 on the CES Depression Scale.
+          <br />
+          You are exhibiting high stress levels. Seek help from a professional.
+        </div>
+      </div>
+      <div class="card" v-if="results == 12">
+        <figure class="image is-3by2">
+          <img src="highStressLevels.jpg" />
+        </figure>
+        <div class="notification is-danger has-text-centered">
+          You score a {{ cesDScore }}/60 on the CES Depression Scale.
+          <br />
+          You are exhibiting high stress levels. Seek help from a professional.
+        </div>
+      </div>
     </div>
   </div>
 </template>

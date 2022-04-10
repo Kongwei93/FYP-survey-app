@@ -53,6 +53,9 @@
 </template>
 
 <script>
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+
 export default {
   name: "Login",
 
@@ -64,17 +67,27 @@ export default {
   },
 
   methods: {
-    login() {
-      this.$store.dispatch("login", {
-        email: this.email,
-        password: this.password,
-      });
+    async login() {
+      try {
+        await signInWithEmailAndPassword(auth, this.email, this.password);
+      } catch (error) {
+        switch (error.code) {
+          case "auth/user-not-found":
+            alert("User not found");
+            break;
+          case "auth/wrong-password":
+            alert("Password is incorrect");
+            break;
+          default:
+            alert("something went wrong");
+        }
 
-      // run the login logic here
+        return;
+      }
 
-      // use mutation to save current user
+      this.$store.commit("SET_USER", auth.currentUser);
 
-      // use this.$router.push({ name: "home" });
+      this.$router.push({ name: "home" });
     },
   },
 };

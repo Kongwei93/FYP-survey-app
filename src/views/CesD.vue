@@ -77,7 +77,7 @@
 
 <script>
 export default {
-  name: "PerceivedSS",
+  name: "CesD",
 
   data() {
     return {
@@ -120,65 +120,34 @@ export default {
     };
   },
   methods: {
-    major_depressive_episode() {
-      // New array for dysphoria anhedonia
-      // Continue if any of the value is equals to 4
-      if (
-        [
-          this.optionValues[1],
-          this.optionValues[3],
-          this.optionValues[5],
-          this.optionValues[7],
-          this.optionValues[9],
-        ].some((val) => val === 4)
-      ) {
-        /* Test for part 1 */
-        const numberOfSymptoms = [
-          this.appetite.some((val) => val === 4),
-          this.sleep.some((val) => val === 4),
-          this.thinking.some((val) => val === 4),
-          this.guilt.some((val) => val === 4),
-          this.tired.some((val) => val === 4),
-          this.movement.some((val) => val === 4),
-          this.suicidal.some((val) => val === 4),
-        ].reduce((acc, cur) => (acc + cur ? 1 : 0), 0);
+    // major_depressive_episode2() {
+    //   // New array for dysphoria anhedonia
+    //   // Continue if any of the value is equals to 4
+    //   if (
+    //     [
+    //       this.optionValues[1],
+    //       this.optionValues[3],
+    //       this.optionValues[5],
+    //       this.optionValues[7],
+    //       this.optionValues[9],
+    //     ].some((val) => val === 4)
+    //   ) {
+    //     const numberOfSymptoms = [
+    //       this.appetite,
+    //       this.sleep,
+    //       this.thinking,
+    //       this.guilt,
+    //       this.tired,
+    //       this.movement,
+    //       this.suicidal,
+    //     ]
+    //       .map((array) => array.some((val) => val === 4))
+    //       .reduce((acc, cur) => (acc + cur ? 1 : 0), 0);
 
-        if (numberOfSymptoms > 3) this.$store.commit("pHQResults", "rly bad");
-
-        /* Test for Part 2 */
-
-        /* Test for Part 3 */
-      }
-    },
-
-    major_depressive_episode2() {
-      // New array for dysphoria anhedonia
-      // Continue if any of the value is equals to 4
-      if (
-        [
-          this.optionValues[1],
-          this.optionValues[3],
-          this.optionValues[5],
-          this.optionValues[7],
-          this.optionValues[9],
-        ].some((val) => val === 4)
-      ) {
-        const numberOfSymptoms = [
-          this.appetite,
-          this.sleep,
-          this.thinking,
-          this.guilt,
-          this.tired,
-          this.movement,
-          this.suicidal,
-        ]
-          .map((array) => array.some((val) => val === 4))
-          .reduce((acc, cur) => (acc + cur ? 1 : 0), 0);
-
-        // If it is rly bad cos 4 symptoms or more than update vuex
-        if (numberOfSymptoms > 3) this.$store.commit("pHQResults", "rly bad");
-      }
-    },
+    //     // If it is rly bad cos 4 symptoms or more than update vuex
+    //     if (numberOfSymptoms > 3) this.$store.commit("pHQResults", "rly bad");
+    //   }
+    // },
 
     answered1() {
       if (
@@ -248,41 +217,70 @@ export default {
         0
       );
       this.dysphoria = [
-        this.optionsValues[1],
+        this.optionValues[1],
         this.optionValues[3],
         this.optionValues[5],
       ];
       this.anhedonia = [this.optionValues[7], this.optionValues[9]];
-      this.appetite = [this.optionsValues[0], this.optionsValues[17]];
+      this.appetite = [this.optionValues[0], this.optionValues[17]];
       this.sleep = [
-        this.optionsValues[4],
-        this.optionsValues[10],
-        this.optionsValues[18],
+        this.optionValues[4],
+        this.optionValues[10],
+        this.optionValues[18],
       ];
-      this.thinking = [this.optionsValues[2], this.optionsValues[19]];
-      this.guilt = [this.optionsValues[8], this.optionsValues[16]];
-      this.tired = [this.optionsValues[6], this.optionsValues[15]];
-      this.movement = [this.optionsValues[11], this.optionsValues[12]];
-      this.suicidal = [this.optionsValues[13], this.optionsValues[14]];
+      this.thinking = [this.optionValues[2], this.optionValues[19]];
+      this.guilt = [this.optionValues[8], this.optionValues[16]];
+      this.tired = [this.optionValues[6], this.optionValues[15]];
+      this.movement = [this.optionValues[11], this.optionValues[12]];
+      this.suicidal = [this.optionValues[13], this.optionValues[14]];
+      if (
+        [
+          this.optionValues[1],
+          this.optionValues[3],
+          this.optionValues[5],
+          this.optionValues[7],
+          this.optionValues[9],
+        ].some((val) => val === 3)
+      ) {
+        /* Test for part 1 */
+        const numberOfSymptoms = [
+          this.appetite.some((val) => val === 3),
+          this.sleep.some((val) => val === 3),
+          this.thinking.some((val) => val === 3),
+          this.guilt.some((val) => val === 3),
+          this.tired.some((val) => val === 3),
+          this.movement.some((val) => val === 3),
+          this.suicidal.some((val) => val === 3),
+        ].reduce((acc, cur) => acc + cur, 0);
 
-      // dysphoria.some((x) => x == 4);
-      // anhedonia.some((x) => x == 4);
-      // appetite.some((x) => x == 4);
-      // sleep.some((x) => x == 4);
-      // thinking.some((x) => x == 4);
-      // guilt.some((x) => x == 4);
-      // tired.some((x) => x == 4);
-      // movement.some((x) => x == 4);
-      // suicidal.some((x) => x == 4);
+        if (numberOfSymptoms > 3) {
+          this.$store.commit("cesDResults5");
+        } else {
+          const numberOfSymptoms = [
+            this.appetite.some((val) => val > 2),
+            this.sleep.some((val) => val > 2),
+            this.thinking.some((val) => val > 2),
+            this.guilt.some((val) => val > 2),
+            this.tired.some((val) => val > 2),
+            this.movement.some((val) => val > 2),
+            this.suicidal.some((val) => val > 2),
+          ].reduce((acc, cur) => acc + cur, 0);
 
-      // Save it into vuex using a mutation
-      // this.$store.commit("updateCesDScore", newCesDScore);
-      // if (this.anhedonia === true || this.dysphoria === true) {
-      //   //include depression category checks
-      // } else if (newCesDScore > 15) this.$store.commit("cesDResults2");
-      // else this.$store.commit("cesDResults1");
-      // // Change view once everything is done
-      // this.$router.push({ name: "results" });
+          if (numberOfSymptoms > 2) {
+            this.$store.commit("cesDResults4");
+          } else if (numberOfSymptoms > 1) {
+            this.$store.commit("cesDResults3");
+          }
+        }
+      } else if (newCesDScore > 15) {
+        this.$store.commit("cesDResults2");
+      } else {
+        this.$store.commit("cesDResults1");
+      }
+
+      this.$store.commit("updateCesDScore", newCesDScore);
+
+      this.$router.push({ name: "results" });
     },
   },
 };

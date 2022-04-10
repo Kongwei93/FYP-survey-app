@@ -3,11 +3,7 @@ import createPersistedState from "vuex-persistedstate";
 
 import router from "./router";
 import { auth } from "./firebase";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 
 export default createStore({
   plugins: [createPersistedState()],
@@ -61,31 +57,23 @@ export default createStore({
     stressResults3(state) {
       state.results = 7;
     },
+    cesDResults1(state) {
+      state.results = 8;
+    },
+    cesDResults2(state) {
+      state.results = 9;
+    },
+    cesDResults3(state) {
+      state.results = 10;
+    },
+    cesDResults4(state) {
+      state.results = 11;
+    },
+    cesDResults5(state) {
+      state.results = 12;
+    },
   },
   actions: {
-    async login({ commit }, { email, password }) {
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-      } catch (error) {
-        switch (error.code) {
-          case "auth/user-not-found":
-            alert("User not found");
-            break;
-          case "auth/wrong-password":
-            alert("Password is incorrect");
-            break;
-          default:
-            alert("something went wrong");
-        }
-
-        return;
-      }
-
-      commit("SET_USER", auth.currentUser);
-
-      router.push("/");
-    },
-
     async register({ commit }, { email, password, name, age }) {
       try {
         await createUserWithEmailAndPassword(auth, email, password);
