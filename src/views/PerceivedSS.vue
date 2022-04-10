@@ -178,10 +178,10 @@ export default {
       // Save it into vuex using a mutation
       this.$store.commit("updateStressScore", newStressScore);
       if (newStressScore > 13 && newStressScore < 27) {
-        this.$store.commit("stressResults2");
+        this.$store.commit("results", 6);
       } else if (newStressScore > 26) {
-        this.$store.commit("stressResults3");
-      } else this.$store.commit("stressResults1");
+        this.$store.commit("results", 7);
+      } else this.$store.commit("results", 5);
 
       // Change view once everything is done
       this.$router.push({ name: "results" });

@@ -254,7 +254,7 @@ export default {
         ].reduce((acc, cur) => acc + cur, 0);
 
         if (numberOfSymptoms > 3) {
-          this.$store.commit("cesDResults5");
+          this.$store.commit("results", 12);
         } else {
           const numberOfSymptoms = [
             this.appetite.some((val) => val > 2),
@@ -267,15 +267,15 @@ export default {
           ].reduce((acc, cur) => acc + cur, 0);
 
           if (numberOfSymptoms > 2) {
-            this.$store.commit("cesDResults4");
+            this.$store.commit("results", 11);
           } else if (numberOfSymptoms > 1) {
-            this.$store.commit("cesDResults3");
+            this.$store.commit("results", 10);
           }
         }
       } else if (newCesDScore > 15) {
-        this.$store.commit("cesDResults2");
+        this.$store.commit("results", 9);
       } else {
-        this.$store.commit("cesDResults1");
+        this.$store.commit("results", 8);
       }
 
       this.$store.commit("updateCesDScore", newCesDScore);

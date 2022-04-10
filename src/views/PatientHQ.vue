@@ -197,12 +197,12 @@ export default {
       // Save it into vuex using a mutation
       this.$store.commit("updatePHQScore", newPHQScore);
       if (newPHQScore > 4 && newPHQScore < 15) {
-        this.$store.commit("pHQResults2");
+        this.$store.commit("results", 2);
       } else if (newPHQScore > 14 && newPHQScore < 20) {
-        this.$store.commit("pHQResults3");
+        this.$store.commit("results", 3);
       } else if (newPHQScore > 20 || newPHQScore === 20) {
         this.$store.commit("pHQResults4");
-      } else this.$store.commit("pHQResults1");
+      } else this.$store.commit("results", 1);
 
       // Change view once everything is done
       this.$router.push({ name: "results" });

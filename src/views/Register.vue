@@ -80,6 +80,9 @@
 </template>
 
 <script>
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+
 export default {
   name: "Register",
 
@@ -94,15 +97,33 @@ export default {
   },
 
   methods: {
-    register() {
+    async register() {
       if (this.agreeToTerms === false) return alert("Please agree to terms");
 
-      this.$store.dispatch("register", {
-        name: this.name,
-        age: this.age,
-        email: this.email,
-        password: this.password,
-      });
+      try {
+        await createUserWithEmailAndPassword(auth, this.email, this.password);
+        this.$store.commit("SET_USER", auth.currentUser);
+        this.$router.push({ name: "home" });
+      } catch (error) {
+        switch (error.code) {
+          case "auth/email-already-in-use":
+            alert("Email already in use");
+            break;
+          case "auth/invalid-email":
+            alert("Invalid email");
+            break;
+          case "auth/operation-not-allowed":
+            alert("Operation not allowed");
+            break;
+          case "auth/weak-password":
+            alert("Weak password");
+            break;
+          default:
+            alert("something went wrong");
+        }
+
+        return;
+      }
     },
   },
 };
